@@ -55,9 +55,9 @@ public class PAT010 {
 	}
 			  
 		
+// data from Excel
 
-
-	@DataProvider(name="symp")
+	@DataProvider(name="symp") 
 	public Object[][] testdata(){
 	Excelutils exl = new Excelutils("./Excelsheet/symptoms.xlsx");
 	int rows = exl.getrowcount(0);
