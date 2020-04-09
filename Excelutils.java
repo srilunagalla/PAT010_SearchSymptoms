@@ -30,7 +30,7 @@ public class Excelutils {
 		
 	}
 	public int getrowcount(int sheetnum){
-		int rowcount = wb1.getSheetAt(sheetnum).getLastRowNum();
+		int rowcount = wb1.getSheetAt(sheetnum).getLastRowNum()+1;
 		return rowcount;
 	}
 		}

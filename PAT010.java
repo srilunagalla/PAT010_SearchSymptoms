@@ -10,6 +10,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import junit.framework.Assert;
 
 
 
@@ -18,18 +19,21 @@ public class PAT010 {
 	
 	@Test(dataProvider="symp")
 
-	public void Validatesymptomcold(String symp) throws InterruptedException{
+	public void Validatesymptom(String symp) throws InterruptedException{
 		
 		WebDriverManager.chromedriver().setup();
 		    WebDriver driver=new ChromeDriver();
 			driver.manage().window().maximize();
+			
 			driver.get("http://96.84.175.78/MMP-Release1-Integrated-Build.2.4.000/portal/login.php");
 		LoginUtilities loginpage=new LoginUtilities(driver);
 		loginpage.validateLoginPage("Ria1", "Ria12345");
+	
 			driver.findElement(By.xpath("//span[contains(text(),'Search Symptoms')]")).click();
 		     String title = driver.getTitle();
 			System.out.println(title);
 			if (title.contains("search Symptoms")){
+				Assert.assertEquals(title, "search Symptoms");
 				System.out.println("********symptoms page opened successfully*****");
 			}
 			else{
@@ -41,10 +45,10 @@ public class PAT010 {
 			  driver.findElement(By.name("submit")).click();
 			  Thread.sleep(3000);
 			  List<WebElement> trdata = driver.findElements(By.xpath("//table[@class='table']//tbody//tr/td"));
-			  System.out.println("***size of column is:****" +trdata.size());
-		
+			
+               System.out.println("***size of column is:****" +trdata.size());
 			   if(trdata.size()==3){
-			  
+			  Assert.assertTrue(true);
 				  System.out.println("Data is Displayed");
 				  
 			  }
